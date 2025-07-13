@@ -1,17 +1,16 @@
-name: Build and Push to GHCR
+name: Build and Push to GHCR on Release
 
 on:
-  push:
-    branches:
-      - main       
-  workflow_dispatch:
+  release:
+    types: [published] 
+  workflow_dispatch:     
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
 
     permissions:
-      packages: write    
+      packages: write   
       contents: read
 
     steps:
@@ -33,4 +32,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/knightdoom/free-games-notifier:latest
+          tags: |
+            ghcr.io/knightdoom/free-games-notifier:latest
+            ghcr.io/knightdoom/free-games-notifier:${{ github.event.release.tag_name }}
