@@ -1,28 +1,27 @@
-# Use official Node.js Alpine image
+# Use official Node.js Alpine-based image
 FROM node:24-alpine
 
 # Set working directory
 WORKDIR /app
 
-# Copy and install dependencies
+# Copy package.json files and install dependencies
 COPY package*.json ./
-RUN npm install && npm audit fix
+RUN npm install --production && npm audit fix
 
-# Copy the rest of the app
+# Copy the full app source
 COPY . .
 
-# Ensure correct permissions (optional, often unnecessary)
-RUN mkdir -p /app/dist /app/config \
-    && chown -R node:node /app
+# Build the app (once, during image build)
+RUN npm run build
 
-# Use existing non-root user (UID 1000)
+# Create a non-root user (assuming UID 1000 already exists in base image as `node`)
+RUN mkdir -p /app/config && chown -R node:node /app
+
+# Switch to the node user (UID 1000, GID 1000)
 USER node
 
-# Define volume
+# Config volume
 VOLUME ["/app/config"]
 
-# Build (optional)
-RUN npm run build || true
-
-# Start the app
-CMD ["npm", "run", "build:start"]
+# Start the app (do not rebuild at runtime)
+CMD ["npm", "run", "start"]
