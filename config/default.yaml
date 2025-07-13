@@ -1,9 +1,9 @@
 # Main configuration
 mainConfiguration:
   platforms:
-    - Mocked
+  - Mocked
   notificationChannels:
-    - Ntfy
+  - Ntfy
 
 # Configuration settings
 settings:
@@ -11,13 +11,14 @@ settings:
   channelSettings:
     Ntfy:
       topic: free-games
+      url: https://ntfy.sh
     Discord:
       webhookUrl: https://discord.com/api/webhooks/...
 
   # Platform specific settings
   platformSettings:
     Steam:
-      types: [games, dlcs]
+      types: [ games, dlcs ]
       schedule:
         interval: 30
     Mocked:
