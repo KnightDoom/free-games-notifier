@@ -6,7 +6,6 @@ WORKDIR /app
 
 # Copy package.json and install dependencies
 COPY package*.json ./
-RUN npm install
 RUN npm install && npm audit fix
 
 # Copy the rest of the app
