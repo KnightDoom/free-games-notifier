@@ -61,6 +61,7 @@ export type MockedSettings = {
 };
 
 export type NtfySettings = {
+  url: string;
   topic: string;
   token?: string;
 };

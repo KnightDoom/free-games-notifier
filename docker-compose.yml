@@ -1,0 +1,7 @@
+version: '3.8'
+services:
+  notifier:
+    image: ghcr.io/knightdoom/free-games-notifier:latest
+    volumes:
+      - ./config/default.yaml:/app/config/default.yaml:ro #update to target path
+    restart: unless-stopped
