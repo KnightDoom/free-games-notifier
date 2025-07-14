@@ -3,8 +3,8 @@ mainConfiguration:
   platforms:
   - Mocked
   #- Steam
-  #- EpicGames
-  #- GOG
+  #- EpicGames #not supported
+  #- GOG # not supported
   notificationChannels:
   - Ntfy
 
