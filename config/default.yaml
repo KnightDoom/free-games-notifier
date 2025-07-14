@@ -2,6 +2,9 @@
 mainConfiguration:
   platforms:
   - Mocked
+  #- Steam
+  #- EpicGames
+  #- GOG
   notificationChannels:
   - Ntfy
 
@@ -12,6 +15,11 @@ settings:
     Ntfy:
       topic: free-games
       url: https://ntfy.sh
+      # Optional token for authentication
+      #token: ''
+      # must be base64 encoded
+      #echo -n "Basic `echo -n 'testuser:fakepassword' | base64`" | base64 | tr -d '='
+      # use above in shell to generate token
     Discord:
       webhookUrl: https://discord.com/api/webhooks/...
 
@@ -19,6 +27,13 @@ settings:
   platformSettings:
     Steam:
       types: [ games, dlcs ]
+      schedule:
+        interval: 30
+    EpicGames:
+      schedule:
+        interval: 30
+    GOG:
+      #types: [ games, dlcs ] 
       schedule:
         interval: 30
     Mocked:
