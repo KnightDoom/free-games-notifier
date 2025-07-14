@@ -12,7 +12,8 @@ export class NtfyChannel extends Notifier {
   }
 
   async send(game: Game): Promise<void> {
-    const url = `https://ntfy.sh/${this.settings.topic}`;
+    //const url = `${this.settings.url}/${this.settings.topic}`; 
+    const url = `${this.settings.url}/${this.settings.topic}${this.settings.token ? `?auth=${this.settings.token}` : ''}`;
     const encodedTitle = `=?UTF-8?B?${Buffer.from(game.title).toString("base64")}?=`;
 
     try {
